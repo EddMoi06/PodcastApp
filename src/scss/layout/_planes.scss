@@ -1,0 +1,98 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.planes {
+    background-color: v.$secundario;
+
+    h2{
+        @include m.headingH2(v.$blanco, v.$primario);
+    }
+
+    .descripcion {
+        color: v.$blanco;
+    }
+}
+
+.nuestros-planes {
+
+    display: flex;
+    flex-direction: column;
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: center;
+    }
+    margin-top: 10rem;
+
+    .plan {
+        background-color: v.$blanco;
+        padding: 5rem;
+        text-align: center;
+        &.negocio {
+            order: -1;
+            background-color: v.$primario;
+            @include m.tablet {
+                order: unset;
+                border-radius: 1rem;
+                transform: scale(1.2);
+            }
+
+            &::before{
+                content: '';
+                background-image: url(../img/icono_negocio.svg);
+                background-repeat: no-repeat;
+                width: 10rem;
+                height: 10rem;
+                display: block;
+                margin: 2rem auto;
+            }
+            @include m.tablet {
+
+                transition: transform 300ms;
+
+                &:hover{
+                    transform: scale(1.3);
+                }
+            }
+
+            .boton-plan{
+                border: 2px solid v.$blanco;
+            }
+        }
+
+        &.pro{
+            &::before{
+                content: '';
+                background-image: url(../img/icono_pro.svg);
+                background-repeat: no-repeat;
+                width: 10rem;
+                height: 10rem;
+                display: block;
+                margin: 2rem auto;
+            }
+        }
+
+        &.inicio{
+            &::before{
+                content: '';
+                background-image: url(../img/icono_inicio.svg);
+                background-repeat: no-repeat;
+                width: 10rem;
+                height: 10rem;
+                display: block;
+                margin: 2rem auto;
+            }
+
+            border-bottom: 2px solid v.$secundario;
+            @include m.tablet {
+                border: none;
+            }
+        }
+
+        .precio{
+            font-weight: 700;
+        }
+        .listado{
+            line-height: 2.5;
+        }
+    }
+}
